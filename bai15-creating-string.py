@@ -34,6 +34,21 @@
 # cbaaa
 
 
-def calculate(s):
-    for i in range(len(s)):
-        
+def calculate(current,remaining,result):
+    if len(remaining) ==0:
+        result.add(current)
+        return
+
+    for i in range(len(remaining)):
+        calculate(current+remaining[i],remaining[:i]+remaining[i+1:],result)
+
+def generate_all_string(s):
+    result=set()
+    calculate("",s,result)
+    result=sorted(result)
+    print(len(result))
+    for i in result:
+        print(i)
+s=str(input().strip())
+generate_all_string(s)
+
